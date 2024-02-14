@@ -9,20 +9,21 @@ namespace Console_RPG
 
         public float currentHP, maxHP;
         public float currentMana, maxMana;
+        public int currentDef, maxDef;
 
         //Composition
         public Stats stats;
 
-        public Entity(string name, float hp, float mana, Stats stats)
+        public Entity(string name, float hp, float mana, int def, Stats stats)
         {
             this.name = name;
             this.currentHP = hp;
             this.maxHP = hp;
             this.currentMana = mana;
             this.maxMana = mana;
+            this.currentDef = def;
+            this.maxDef = def;
             this.stats = stats;
-
-
 
         }
 

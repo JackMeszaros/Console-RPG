@@ -9,7 +9,7 @@ namespace Console_RPG
         public int coinsOwned;
 
         //calling the base consructor, then doing the Enemy-Specific stuff
-        public Player(string name, int hp, int mana, Stats stats, int coinsOwned) : base(name, hp, mana, stats)
+        public Player(string name, int hp, int mana, int def, Stats stats, int coinsOwned) : base(name, hp, mana, def, stats)
         {
             this.coinsOwned = coinsOwned;
         }
@@ -25,5 +25,9 @@ namespace Console_RPG
             Console.WriteLine(this.name + " attacked " + target.name + "!");
         }
 
+        public void UseItem(Item item, Entity target)
+        {
+            item.use(this, target);
+        }
     }
 }

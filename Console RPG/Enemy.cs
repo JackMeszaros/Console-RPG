@@ -8,7 +8,7 @@ namespace Console_RPG
         public int coinsDropped;
 
         //calling the base consructor, then doing the Enemy-Specific stuff
-        public Enemy(string name, int hp, int mana, Stats stats, int coinsDropped) : base(name, hp, mana, stats)
+        public Enemy(string name, int hp, int mana, int def, Stats stats, int coinsDropped) : base(name, hp, mana, def, stats)
         {
             this.coinsDropped = coinsDropped;
         }
