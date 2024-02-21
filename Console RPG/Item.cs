@@ -6,6 +6,12 @@ namespace Console_RPG
 {
     abstract class Item
     {
+        public static HealthPotionItem potion1 = new HealthPotionItem("Potion I", "It'll quench ya", 10, 5, 20);
+        public static HealthPotionItem potion2 = new HealthPotionItem("Potion II", "Even quenchier???", 25, 20, 40);
+        public static HealthPotionItem potion3 = new HealthPotionItem("Potion III", "WOW, now that's quenchy", 75, 50, 80);
+        
+        public static BoomStickItem boomStick = new BoomStickItem("Stick goes boom", "Have you ever seen someone and immediately wanted to BLOW THEM UP? Well now you can!", 200, 1, 100, 3);
+
         public string name;
         public string description;
         public int shopPrice;
@@ -34,7 +40,7 @@ namespace Console_RPG
 
         public override void use(Entity user, Entity target)
         {
-            target.currentHP += this.healAmount;
+            target.currentHP -= this.healAmount;
             Console.WriteLine(target.name + " healed themselves!");
         }
     }

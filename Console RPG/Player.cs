@@ -6,12 +6,17 @@ namespace Console_RPG
     //Inheritance
     class Player : Entity
     {
-        public int coinsOwned;
+        public static Player ruth = new Player("Ruth", 30, 20, 3, new Stats());
+        public static Player jaden = new Player("jaden", -200, -10, 3, new Stats());
+        public static Player lapis = new Player("lapis", 30, 40, 3, new Stats());
+        public static Player emile = new Player("emile", 10000, 20000, 3, new Stats());
+
+        public static Player player1 = new Player("Name", 100, 0, 100, new Stats(attack: 100, defense: 100, magicAtk: 100, magicDef: 100));
+        public static Player player2 = new Player("Player2", 100, 0, 100, new Stats(attack: 100, defense: 100, magicAtk: 100, magicDef: 100));
 
         //calling the base consructor, then doing the Enemy-Specific stuff
-        public Player(string name, int hp, int mana, int def, Stats stats, int coinsOwned) : base(name, hp, mana, def, stats)
+        public Player(string name, int hp, int mana, int def, Stats stats) : base(name, hp, mana, def, stats)
         {
-            this.coinsOwned = coinsOwned;
         }
 
         public override Entity Choosetarget(List<Entity> choices)
