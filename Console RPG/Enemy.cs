@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Console_RPG
@@ -30,6 +31,12 @@ namespace Console_RPG
         {
             //figure out how to calculate the damage and subtract from target's hp
             Console.WriteLine(this.name + " attacked " + target.name + "!");
+        }
+
+        public override void DoTurn(List<Player> players, List<Enemy> enemies)
+        {
+            Entity target = Choosetarget(players.Cast<Entity>().ToList());
+            Attack(target);
         }
     }
 }

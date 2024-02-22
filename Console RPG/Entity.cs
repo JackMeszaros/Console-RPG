@@ -27,6 +27,7 @@ namespace Console_RPG
 
         }
 
+        public abstract void DoTurn(List<Player> players, List<Enemy> enemies);
         public abstract Entity Choosetarget(List<Entity> choices);
 
         public abstract void Attack(Entity target);

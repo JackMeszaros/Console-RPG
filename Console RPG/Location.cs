@@ -18,8 +18,8 @@ namespace Console_RPG
         public static Location southWing = new Location("South Wing", "(You see a a table set out with a deck of cards, behind the table sits a man shivering with fear. He tells you " +
             "that the winner of the game of Blackjack gets to live, and the loser will have their head explode)\n");
 
-        public static Location westWing = new Location("West Wing", "(You see someone chained to a wall by their ankle, holding a shard of glass in a bloody hand, they dont need" +
-            "to say anything, the winner of the fight gets to live)\n", new Battle(new List<Enemy>() { Enemy.kaleb, Enemy.will, Enemy.jackson, Enemy.damon }));
+        public static Location westWing = new Location("West Wing", "(You see someone chained to a wall by their ankle, holding a shard of glass in a bloody hand, they could be of " +
+            "use if you save them)\n", new Battle(new List<Enemy>() { Enemy.kaleb, Enemy.will, Enemy.jackson, Enemy.damon }));
 
 
         public string name;

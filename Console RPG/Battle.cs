@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,7 +18,39 @@ namespace Console_RPG
 
         public void Resolve(List<Player> players)
         {
-            Console.WriteLine(players[0].name);
+            //loop the turn system
+            while (true)
+            {
+                //loop through all players
+                foreach (var item in players)
+                {
+                    Console.WriteLine($"It is {item.name}'s turn");
+                    item.DoTurn(players, enemies);
+                }
+
+                //Loop through enemies
+                foreach (var item in enemies)
+                {
+                    Console.WriteLine($"It is {item.name}'s turn");
+                    item.DoTurn(players, enemies);
+                }
+
+                //if player dies
+                if (players.TrueForAll(player => player.currentHP <= 0))
+                {
+                    Console.WriteLine("You died");
+                    break;
+                }
+                
+                //if enemy dies
+                if (players.TrueForAll(enemy => enemy.currentHP <= 0))
+                {
+                    Console.WriteLine("You killed someone");
+                    break;
+                }
+            }
+
+            Console.WriteLine("The fight has ended");
         }
     }
 }

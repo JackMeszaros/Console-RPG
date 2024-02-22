@@ -14,8 +14,7 @@ namespace Console_RPG
             Player.player1.name = PlayerName;
 
             Location.startArea.SetNearbyLocations(north: Location.northWing,  south: Location.southWing, east: Location.eastWing, west: Location.westWing);
-            Location.startArea.Resolve(new List<Player>() { Player.player1 });
-
+            Location.westWing.Resolve(new List<Player>() { Player.player1 });
         }
     }
 }
