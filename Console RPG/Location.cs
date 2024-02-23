@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Console_RPG
@@ -92,6 +93,26 @@ namespace Console_RPG
             {
                 nextLocation = this.north;
 
+                Console.WriteLine("What do you want to do?\n");
+                Console.WriteLine("1.) Walk across carefully trying not to get cut\n2.) Brush away the broken glass with your feet, clearing a path\n3.) Run across the glass disregarding the pain and bleeding");
+                int phteven = Convert.ToInt32(Console.ReadLine());
+
+                if (phteven == 1)
+                {
+                    Console.WriteLine("1");
+                }
+                if (phteven == 2)
+                {
+                    Console.WriteLine("2");
+                }
+                if (phteven == 3)
+                {
+                    Console.WriteLine("3");
+                }
+                else
+                {
+                    Console.WriteLine("Type a valid option");
+                }
             }
             else if (direction.Contains("ea"))
             {
@@ -109,7 +130,10 @@ namespace Console_RPG
 
             }
             else
+            {
                 Console.WriteLine("please enter a valid direction");
+                Location.startArea.Resolve(new List<Player>() { Player.player1 });
+            }        
 
             nextLocation.Resolve(players);
         }

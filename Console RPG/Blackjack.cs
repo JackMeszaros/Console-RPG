@@ -7,6 +7,6 @@ namespace Console_RPG
 {
     public class Blackjack
     {
-        
+        Console.WriteLine("you lose bozo");
     }
 }
