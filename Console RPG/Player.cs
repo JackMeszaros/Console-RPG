@@ -7,6 +7,14 @@ namespace Console_RPG
     //Inheritance
     class Player : Entity
     {
+        public static List<Item> Inventory = new List<Item>() 
+        { 
+            HealthPotionItem.potion1, 
+            HealthPotionItem.potion2, 
+            HealthPotionItem.potion3 
+        };
+        public static int CoinCount = 0;
+
         //public static Player ruth = new Player("Ruth", 30, 20, 3, new Stats());
         //public static Player jaden = new Player("jaden", -200, -10, 3, new Stats());
         //public static Player lapis = new Player("lapis", 30, 40, 3, new Stats());
@@ -32,6 +40,19 @@ namespace Console_RPG
             int index = Convert.ToInt32(Console.ReadLine());
             return choices[index -1];
         }
+
+        public Item ChooseItem(List<Item> choices)
+        {
+            Console.WriteLine("<Choose an item to use>");
+
+            for (int i = 0; i < choices.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} {choices[i].name}");
+            }
+
+            int index = Convert.ToInt32(Console.ReadLine());
+            return choices[index - 1];
+        }
         public override void Attack(Entity target)
         {
             //figure out how to calculate the damage and subtract from target's hp
@@ -39,13 +60,35 @@ namespace Console_RPG
         }
         public override void DoTurn(List<Player> players, List<Enemy> enemies)
         {
-            Entity target = Choosetarget(enemies.Cast<Entity>().ToList());
-            Attack(target);
+
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("ATTACK | ITEM");
+            string choice = Console.ReadLine(); 
+
+            if (choice == "attack")
+            {
+                Entity target = Choosetarget(enemies.Cast<Entity>().ToList());
+                Attack(target);
+            }
+            else if (choice == "item")
+            {
+                Item item = ChooseItem(Inventory);
+                Entity target = Choosetarget(enemies.Cast<Entity>().ToList());
+
+                item.use(this, target);
+                Inventory.Remove(item);
+            }
+            else
+            {
+                Console.WriteLine("Enter a valid option");
+            }
         }
 
         public void UseItem(Item item, Entity target)
         {
+
             item.use(this, target);
+
         }
     }
 }

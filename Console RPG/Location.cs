@@ -8,7 +8,7 @@ namespace Console_RPG
     class Location
     {
         public static Location startArea = new Location("Middle Area", "(A grimy area with dried blood scattered across the stony floor, 4 doors sit on each of the walls with the names " +
-            "of the 4 cardinal directions) \n");
+            "of the 4 cardinal directions) \n", new Shop("\"Please give up!\"", new List<Item>() { Item.potion1, Item.potion2, Item.potion3 }));
 
         public static Location northWing = new Location("North Wing", "(there's shattered glass and oil across the entire floor, a console with a keycard sits at the end of the room. " + 
             "A timer rests on the left wall, you have 2 minutes to figure out what to do, and execute your plan) \n");
@@ -25,15 +25,15 @@ namespace Console_RPG
 
         public string name;
         public string description;
-        public Battle battle;
+        public Feature feature;
 
         public Location north, east, south, west;
 
-        public Location(string name, string description, Battle battle = null)
+        public Location(string name, string description, Feature feature = null)
         {
             this.name = name;
             this.description = description;
-            this.battle = battle;
+            this.feature = feature;
         }
 
         public void SetNearbyLocations(Location north = null, Location east = null, Location south = null, Location west = null)
@@ -69,7 +69,7 @@ namespace Console_RPG
             Console.WriteLine(this.description);
 
             //Null checking if there's a battle to resolve
-            battle?.Resolve(players);
+            feature?.Resolve(players);
 
             Console.WriteLine("Which direction would you like to go?");
 

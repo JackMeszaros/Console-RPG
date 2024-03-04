@@ -5,47 +5,47 @@ using System.Text;
 
 namespace Console_RPG
 {
-    class Battle
+    class Battle : Feature
     {
         public List<Enemy> enemies;
-        public bool isResolved;
 
-        public Battle(List<Enemy> enemies)
+        public Battle(List<Enemy> enemies) : base(false)
         {
             this.enemies = enemies;
-            this.isResolved = false;
         }
 
-        public void Resolve(List<Player> players)
+        public override void Resolve(List<Player> players)
         {
             //loop the turn system
             while (true)
             {
                 //loop through all players
-                foreach (var item in players)
+                foreach (var player in players)
                 {
-                    Console.WriteLine($"It is {item.name}'s turn");
-                    item.DoTurn(players, enemies);
+                    if (player.currentHP > 0)
+                    Console.WriteLine($"It is {player.name}'s turn");
+                    player.DoTurn(players, enemies);
                 }
 
                 //Loop through enemies
-                foreach (var item in enemies)
+                foreach (var enemy in enemies)
                 {
-                    Console.WriteLine($"It is {item.name}'s turn");
-                    item.DoTurn(players, enemies);
+                    if (enemy.currentHP > 0)
+                    Console.WriteLine($"It is {enemy.name}'s turn");
+                    enemy.DoTurn(players, enemies);
                 }
 
                 //if player dies
                 if (players.TrueForAll(player => player.currentHP <= 0))
                 {
-                    Console.WriteLine("You died");
+                    Console.WriteLine("You died, your body will be put to use even after death.");
                     break;
                 }
                 
                 //if enemy dies
                 if (players.TrueForAll(enemy => enemy.currentHP <= 0))
                 {
-                    Console.WriteLine("You killed someone");
+                    Console.WriteLine("You killed someone.");
                     break;
                 }
             }
