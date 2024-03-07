@@ -8,9 +8,15 @@ namespace Console_RPG
         static void Main(string[] args)
         {
 
-            Console.WriteLine("What is your name?");
+            Console.WriteLine("What is your name? (not derek pls)");
 
             string PlayerName = Console.ReadLine();
+
+            if (PlayerName == "derek" || PlayerName == "Derek") 
+            {
+                Console.WriteLine("Ew, terrible name, don't even think about playing my game");
+                System.Environment.Exit(0);
+            }
             Player.player1.name = PlayerName;
 
             Location.startArea.SetNearbyLocations(north: Location.northWing,  south: Location.southWing, east: Location.eastWing, west: Location.westWing);

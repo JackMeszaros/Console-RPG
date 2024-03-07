@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
@@ -7,6 +8,11 @@ namespace Console_RPG
 {
     class Location
     {
+        public static bool northDone = false;
+        public static bool eastDone = false;
+        public static bool southDone = false;
+        public static bool westDone = false;
+
         public static Location startArea = new Location("Middle Area", "(A grimy area with dried blood scattered across the stony floor, 4 doors sit on each of the walls with the names " +
             "of the 4 cardinal directions) \n", new Shop("\"Please give up!\"", new List<Item>() { Item.potion1, Item.potion2, Item.potion3 }));
 
@@ -89,46 +95,81 @@ namespace Console_RPG
             string direction = Console.ReadLine().ToLower();
             Location nextLocation = null;
 
+            //moving to north wing
             if (direction.Contains("no"))
             {
                 nextLocation = this.north;
 
+                gibber:
                 Console.WriteLine("What do you want to do?\n");
                 Console.WriteLine("1.) Walk across carefully trying not to get cut\n2.) Brush away the broken glass with your feet, clearing a path\n3.) Run across the glass disregarding the pain and bleeding");
                 int phteven = Convert.ToInt32(Console.ReadLine());
 
                 if (phteven == 1)
                 {
-                    Console.WriteLine("1");
+                    //death
+                    Console.WriteLine("You waste too much time avoiding injury and a trap activates. Fire busts from the walls lighting the oil on fire, killing you");
                 }
                 if (phteven == 2)
                 {
-                    Console.WriteLine("2");
+                    //choice
+                    goober:
+                    Console.WriteLine("You're making decent progress, if not for the timer. There's enough time to get to the console and back if you run, but the pain will be" +
+                        "unbearable. ");
+                    Console.WriteLine("Run (1) | Keep brushing away the glass, but faster... (2)");
+                    int blob = Convert.ToInt32(Console.ReadLine());
+
+                    if (blob == 1)
+                    {
+                        //death
+                        Console.WriteLine("While running to the console you slip and face plant into the glass shards");
+                    }
+
+                    else if (blob == 2)
+                    {
+                        //live
+                        Console.WriteLine("you barely manage to make it to the console, and since you had a path laid out you managed to make it through with minor injuries");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Type a valid option");
+                        goto goober;
+                    }
                 }
                 if (phteven == 3)
                 {
+                    //live, but take damage
                     Console.WriteLine("3");
                 }
                 else
                 {
                     Console.WriteLine("Type a valid option");
+                    goto gibber; 
                 }
             }
+
+            //moving to east wing
             else if (direction.Contains("ea"))
             {
                 nextLocation = this.east;
 
             }
+
+            //moving to south wing
             else if (direction.Contains("so"))
             {
                 nextLocation = this.south;
 
             }
+
+            //moving to west wing
             else if (direction.Contains("we"))
             {
                 nextLocation = this.west;
 
             }
+
             else
             {
                 Console.WriteLine("please enter a valid direction");
