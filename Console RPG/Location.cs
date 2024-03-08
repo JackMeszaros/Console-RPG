@@ -116,19 +116,22 @@ namespace Console_RPG
                     goober:
                     Console.WriteLine("You're making decent progress, if not for the timer. There's enough time to get to the console and back if you run, but the pain will be" +
                         "unbearable. ");
-                    Console.WriteLine("Run (1) | Keep brushing away the glass, but faster... (2)");
+                    Console.WriteLine("1.) Run \n2.)Keep brushing away the glass, but faster... (2)");
                     int blob = Convert.ToInt32(Console.ReadLine());
 
                     if (blob == 1)
                     {
                         //death
                         Console.WriteLine("While running to the console you slip and face plant into the glass shards");
+                        Program.Death();
                     }
 
                     else if (blob == 2)
                     {
                         //live
                         Console.WriteLine("you barely manage to make it to the console, and since you had a path laid out you managed to make it through with minor injuries");
+                        Console.WriteLine("");
+                        goto gibber;
                     }
 
                     else
